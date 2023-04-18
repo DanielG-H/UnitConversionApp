@@ -30,14 +30,4 @@ public abstract class ConversionDatabase extends RoomDatabase {
 
         return INSTANCE;
     }
-//    private static final String DB_NAME = "person_db";
-//    private static ConversionDatabase instance;
-//    public static synchronized ConversionDatabase getInstance(Context context) {
-//        if (instance == null) {
-//            instance = Room.databaseBuilder(context.getApplicationContext(), ConversionDatabase.class,
-//                            DB_NAME).fallbackToDestructiveMigration().build();
-//            }
-//            return instance;
-//        }
-
 }

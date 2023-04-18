@@ -57,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
         spinnerInitial.setAdapter(adapter);
         spinnerFinal.setAdapter(adapter);
 
+        double result = getConversion();
+
+        UnitRecord record_test = new UnitRecord(username, 3.0,spinnerInitial.getSelectedItem().toString(),
+                300.0, spinnerFinal.getSelectedItem().toString());
+        viewModel.insertRecord(record_test);
+
+
+
     }
 
     public double getConversion(){
