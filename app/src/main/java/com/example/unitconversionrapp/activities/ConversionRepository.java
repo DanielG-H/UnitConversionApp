@@ -18,22 +18,28 @@ public class ConversionRepository {
         unitRecordDao = db.unitRecordDao();
     }
 
+    // ---------- USERS ---------- //
     LiveData<List<User>> getUsers(){
         return userDao.getUserList();
     }
 
     void insertUser(User user){
-        new insertAsyncTask(userDao).execute(user);
+        new insertAsyncTaskUser(userDao).execute(user);
     }
 
+    // ---------- RECORDS ---------- ///
     LiveData<List<UnitRecord>> getRecords(){
         return unitRecordDao.getRecordList();
     }
 
-    private static class insertAsyncTask extends AsyncTask<User, Void, Void>{
+    void insertRecord(UnitRecord unitRecord){
+        new insertAsyncTaskRecord(unitRecordDao).execute(unitRecord);
+    }
+
+    private static class insertAsyncTaskUser extends AsyncTask<User, Void, Void>{
         private UserDao taskDao;
 
-        insertAsyncTask(UserDao userDao){
+        insertAsyncTaskUser(UserDao userDao){
             taskDao = userDao;
         }
 
@@ -42,5 +48,22 @@ public class ConversionRepository {
             taskDao.insertUser(users[0]);
             return null;
         }
+
     }
+
+    private static class insertAsyncTaskRecord extends AsyncTask<UnitRecord, Void, Void>{
+        private UnitRecordDao taskDao;
+
+        insertAsyncTaskRecord(UnitRecordDao unitRecordDao){
+            taskDao = unitRecordDao;
+        }
+
+        @Override
+        protected Void doInBackground(UnitRecord... records) {
+            taskDao.insertRecord(records[0]);
+            return null;
+        }
+
+    }
+
 }

@@ -20,6 +20,8 @@ public class ConversionViewModel extends AndroidViewModel {
         recordList = repository.getRecords();
     }
 
+    // ---------- USERS ---------- //
+
     LiveData<List<User>> getUsers(){
         return userList;
     }
@@ -28,8 +30,14 @@ public class ConversionViewModel extends AndroidViewModel {
         repository.insertUser(user);
     }
 
+    // ---------- RECORDS ---------- //
+
     LiveData<List<UnitRecord>> getRecords(){
         return recordList;
+    }
+
+    public void insertRecord(UnitRecord unitRecord){
+        repository.insertRecord(unitRecord);
     }
 
 
