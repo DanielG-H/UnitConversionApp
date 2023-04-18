@@ -7,10 +7,10 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string-array name="unit_array">
-        <item>Meter (m)</item>
-        <item>Centimeter (cm)</item>
-        <item>Inch (in)</item>
-        <item>Feet (ft)</item>
+        <item>Meter(m)</item>
+        <item>Centimeter(cm)</item>
+        <item>Inch(in)</item>
+        <item>Feet(ft)</item>
     </string-array>
     <string name="unidad_1">FROM</string>
     <string name="unidad_2">TO</string>

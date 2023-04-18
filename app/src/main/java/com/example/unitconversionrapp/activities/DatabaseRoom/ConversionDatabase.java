@@ -11,7 +11,7 @@ import com.example.unitconversionrapp.activities.UserDao;
 import com.example.unitconversionrapp.activities.UnitRecord;
 import com.example.unitconversionrapp.activities.User;
 
-@Database(entities = {User.class, UnitRecord.class}, version = 1)
+@Database(entities = {User.class, UnitRecord.class}, version = 2)
 public abstract class ConversionDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
