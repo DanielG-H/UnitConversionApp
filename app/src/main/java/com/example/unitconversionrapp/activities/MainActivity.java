@@ -3,6 +3,8 @@ package com.example.unitconversionrapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,16 +12,20 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.unitconversionrapp.R;
+import com.example.unitconversionrapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     Spinner spinnerInitial;
     Spinner spinnerFinal;
 
+    ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
         ConversionViewModel viewModel = new ViewModelProvider(this).get(ConversionViewModel.class);
@@ -27,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
         // Test user entry
 //        User Ximena = new User("Ximena");
 //        viewModel.insertUser(Ximena);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("NAME");
 
-        // Test record entry
-//        UnitRecord record_test = new UnitRecord(1, 3.0,"Meter", 300.0, "Centimeter");
-//        viewModel.insertRecord(record_test);
+        User user = new User(username);
+        viewModel.insertUser(user);
 
 
         // Test read Room LiveData (Plus)
@@ -51,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
 
         spinnerInitial.setAdapter(adapter);
         spinnerFinal.setAdapter(adapter);
+
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double number = Double.parseDouble(binding.editText.getText().toString());
+
+                
+
+            }
+        });
 
         spinnerInitial.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
