@@ -2,6 +2,7 @@ package com.example.unitconversionrapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,18 +17,13 @@ import com.example.unitconversionrapp.R;
 import com.example.unitconversionrapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private String TAG = "MainActivity";
-
+    private final String TAG = "MainActivity";
     private String username;
     Spinner spinnerInitial;
     Spinner spinnerFinal;
-
     Button calculateBtn;
-
     EditText firstUQ;
-
     ActivityMainBinding binding;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +52,32 @@ public class MainActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double result = getConversion();
-                binding.resultTv.setText(String.valueOf(result));
-                UnitRecord record_test = new UnitRecord(username, Double.parseDouble(firstUQ.getText().toString()),
-                        spinnerInitial.getSelectedItem().toString(), result, spinnerFinal.getSelectedItem().toString());
-                viewModel.insertRecord(record_test);
+                try {
+                    double result = getConversion();
+                    Log.d(TAG,"Result of Conversion: " + result);
+                    binding.resultTv.setText(String.valueOf(result));
+
+                    double userQuantity = Double.parseDouble(firstUQ.getText().toString());
+                    UnitRecord record_test = new UnitRecord(username, userQuantity,
+                            spinnerInitial.getSelectedItem().toString(), result, spinnerFinal.getSelectedItem().toString());
+                    viewModel.insertRecord(record_test);
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, "Please enter a valid number", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
 
-    public double getConversion() {
+    private double getConversion() {
         String spInitialValue = spinnerInitial.getSelectedItem().toString();
         String spFinalValue = spinnerFinal.getSelectedItem().toString();
-        UnitConverter converter = new UnitConverter();
-        double result = 0.0;
-        try {
-            result = converter.getConversion(Double.parseDouble(firstUQ.getText().toString()), spInitialValue, spFinalValue);
-        } catch (Exception e) {
-            Toast.makeText(this, "Please enter a valid number", Toast.LENGTH_LONG).show();
+        String userQuantityStr = firstUQ.getText().toString();
+
+        if (spInitialValue.equals(spFinalValue)) {
+            return Double.parseDouble(userQuantityStr);
         }
-        return result;
+
+        UnitConverter converter = new UnitConverter();
+        return converter.getConversion(Double.parseDouble(userQuantityStr), spInitialValue, spFinalValue);
     }
 }

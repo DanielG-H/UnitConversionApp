@@ -1,11 +1,13 @@
 package com.example.unitconversionrapp.activities;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class UnitConverter {
+    private final String TAG = "UnitConverter";
     private final Map<String, Double> measureFactors = new HashMap<>();
-
 
     public UnitConverter() {
         setFactor("Meter(m)Inch(in)", 39.3701f);
@@ -21,9 +23,9 @@ public class UnitConverter {
         setFactor("Centimeter(m)Feet(ft)", 0.032808f);
 
 
-        setFactor("Inch(in)Meter(m)", 0.3048f);
-        setFactor("Inch(in)Centimeter(cm)", 12.0f);
-        setFactor("Inch(in)Feet(ft)", 30.48f);
+        setFactor("Feet(ft)Meter(m)", 0.3048f);
+        setFactor("Feet(ft)Centimeter(cm)", 30.48f);
+        setFactor("Feet(ft)Inch(in)", 12.0f);
     }
 
     public void setFactor(String key, double factor) {
@@ -34,6 +36,8 @@ public class UnitConverter {
         String key = firstUnit + secondUnit;
         if (measureFactors.containsKey(key)) {
             double factor = measureFactors.get(key);
+            Log.d(TAG, "User quantity: " + firstUnitQuantity);
+            Log.d(TAG, "Factor: " + factor);
             return factor * firstUnitQuantity;
         }
         return 0.0f;
