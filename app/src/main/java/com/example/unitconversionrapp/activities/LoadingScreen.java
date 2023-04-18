@@ -39,6 +39,7 @@ public class LoadingScreen extends AppCompatActivity {
         if (TextUtils.isEmpty(username)) {
            Toast.makeText(this, "Enter a valid username", Toast.LENGTH_LONG).show();
        } else {
+
            startIntent();
            Log.d(TAG, "Goes to main screen");
        }
