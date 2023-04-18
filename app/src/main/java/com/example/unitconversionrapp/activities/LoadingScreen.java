@@ -1,4 +1,4 @@
-package com.example.unitconversionrapp;
+package com.example.unitconversionrapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.unitconversionrapp.R;
 import com.example.unitconversionrapp.databinding.ActivityLoadingScreenBinding;
 
 public class LoadingScreen extends AppCompatActivity {
