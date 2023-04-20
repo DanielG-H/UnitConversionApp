@@ -6,6 +6,8 @@
     <string name="unit">Number</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="result">RESULT</string>
     <string-array name="unit_array">
         <item>Meter(m)</item>
         <item>Centimeter(cm)</item>

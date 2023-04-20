@@ -18,9 +18,9 @@ public class UnitConverter {
         setFactor("Inch(in)Centimeter(cm)", 2.54f);
         setFactor("Inch(in)Feet(ft)", 0.08333f);
 
-        setFactor("Centimeter(m)Meter(m)", 0.01f);
-        setFactor("Centimeter(m)Inch(in)", 0.393701f);
-        setFactor("Centimeter(m)Feet(ft)", 0.032808f);
+        setFactor("Centimeter(cm)Meter(m)", 0.01f);
+        setFactor("Centimeter(cm)Inch(in)", 0.393701f);
+        setFactor("Centimeter(cm)Feet(ft)", 0.032808f);
 
 
         setFactor("Feet(ft)Meter(m)", 0.3048f);
