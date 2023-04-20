@@ -9,18 +9,14 @@ import androidx.room.PrimaryKey;
 import com.example.unitconversionrapp.activities.User;
 
 
-@Entity(tableName = "UnitRecord",
-        foreignKeys = @ForeignKey( entity = User.class,
-                parentColumns = "UserID",
-                childColumns = "UserID",
-                onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "UnitRecord")
 public class UnitRecord {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "UnitRecordID")
     protected int UnitRecordID;
 
-    @ColumnInfo(name = "UserID")
-    protected int UserID;
+    @ColumnInfo(name = "Username")
+    protected String Username;
 
     @ColumnInfo(name = "InitialUnitQuantity")
     protected double InitialUnitQuantity;
@@ -34,10 +30,10 @@ public class UnitRecord {
     @ColumnInfo(name = "ConvertedUnit")
     protected String ConvertedUnit;
 
-    public UnitRecord(int UserID, double InitialUnitQuantity,
+    public UnitRecord(String Username, double InitialUnitQuantity,
                       String InitialUnit, double ConvertedUnitQuantity,
                       String ConvertedUnit){
-        this.UserID = UserID;
+        this.Username = Username;
         this.InitialUnitQuantity = InitialUnitQuantity;
         this.InitialUnit = InitialUnit;
         this.ConvertedUnitQuantity = ConvertedUnitQuantity;
